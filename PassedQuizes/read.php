@@ -2,8 +2,8 @@
 header('Access-Control-Allow-Origin: *');   
 header('Content-Type: application/jason');
 
-include_once  '../../Configeration/DB_Class.php';
-include_once  '../../Models/passedquiz.php';
+include_once  '../Configeration/DB_Class.php';
+include_once  '../Models/passedquiz.php';
 
 $database=new Database();
 $db=$database->connect();
