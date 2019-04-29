@@ -9,6 +9,9 @@ $count=0;
 $quizId="";
 $errors = [];
 $ids = [];
+$userScore=0;
+$chk=false;
+$passScore=0;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {		
 	include('db.php');
 	$pdo = DBFactory::getDBO();
@@ -66,33 +69,37 @@ $quesNum = $quizinfo['NumOfQuestions'];
 if($quesNum!=0){//$quesScore = $passScore / $quesNum;
 	$quesScore=1;}
 $correct="";
-$userScore;
 $select="";
-$userId = 1;
+$userId = 10;
 for($i=0;$i<$countQuestion;$i++){   
     if(isset($_POST[$i])){
         $select=$_POST[$i];
         //echo "You have selected :".$select;//  Displaying Selected Value   
+        $chk = true;
+
 		} 
        $correct = $questioninfo[$i]['CorrectSolution'];
        if($correct == $select)
        {
-		    error_reporting(0);
+		    //error_reporting(0);
             $userScore+=$quesScore;
        }
+
 }
-error_reporting(0);
-echo "UserScore is". $userScore;
+
+//echo "YOUR SCORE: ". $userScore;
+//error_reporting(0);
 
 if($userScore>=$passScore){
 $stmt = $pdo->prepare('INSERT INTO `passedquiz` (`UserID`, `QuizID`, `UserScore`) VALUES (:userId, :quizId, :userScore)');
-error_reporting(0);
+//error_reporting(0);
 		$stmt->execute(array(
 			'userId' => $userId,
 			'quizId' => $quizId,
 			'userScore' => $userScore
 			
-		));
+        ));
+       // echo "passed";
 }
 
 
@@ -124,6 +131,26 @@ error_reporting(0);
 <body style="background-color:#f5f5f5; " class="text-center">
 <form class="form-group" method="post" >
 	<?php include('error.php') ?>
+
+
+
+
+<?php
+
+//error_reporting(0);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {	
+    if($userScore>=$passScore){
+        echo'<div class="alert alert-success" role="alert"> ';
+        echo'<h1 ><span class="label label-default">PASSED</span> </h>'; 
+        echo'</div> ';
+    }
+    if($userScore<$passScore && $chk==true){
+        echo'<div class="alert alert-danger" role="alert"> ';
+        echo'<h1 ><span class="label label-default">FAILED</span> </h>'; 
+        echo'</div> ';    }
+}
+    
+   ?>
 
     <div class="form-group">
 			<label><h5>QUIZ SKILL</h5></label>
@@ -167,9 +194,7 @@ error_reporting(0);
 <?php $radio++; ?>
 
         
-        <h2>
-     <?php echo  $qinfo['QuestionID'] ?> 
-        </h2>
+      
         <h4>
      <?php echo  $qinfo['Question'] ?> 
         </h4>
@@ -203,7 +228,7 @@ error_reporting(0);
 
   <?php endforeach ?>
   </div>
-  <input type="submit" class="btn btn-light" name="submit" value="Get Selected Values" />
+  <input type="submit" class="btn btn-light" name="submitq" value="Get Selected Values" />
 
 
 
