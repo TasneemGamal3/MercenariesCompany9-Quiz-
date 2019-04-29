@@ -3,7 +3,7 @@
 /**
  * Database test case.
  */
-include_once 'Configeration/DB_Class.php';
+include_once '../Configeration/DB_Class.php';
 
 class TestDB extends PHPUnit_Framework_TestCase
 {

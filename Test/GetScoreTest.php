@@ -3,8 +3,8 @@
 /**
  * GetScore test case.
  */
-include_once 'Configeration/DB_Class.php';
-include_once 'Models/GetScore.php';
+include_once '../Configeration/DB_Class.php';
+include_once '../Models/GetScore.php';
 class GetScoreTest extends PHPUnit_Framework_TestCase
 {
 
