@@ -1,19 +1,18 @@
 <?php
 
 /**
- * Asked test case.
+ * PassedQuizes test case.
  */
-include_once 'Configeration/DB_Class.php';
-include_once 'Models/asked.php';
-
-class AskedTest extends PHPUnit_Framework_TestCase
+include_once '../Configeration/DB_Class.php';
+include_once '../Models/passedquiz.php';
+class PassedQuizesTest extends PHPUnit_Framework_TestCase
 {
 
     /**
      *
-     * @var Asked
+     * @var PassedQuizes
      */
-    private $asked;
+    private $passedQuizes;
 
     /**
      * Prepares the environment before running a test.
@@ -22,10 +21,10 @@ class AskedTest extends PHPUnit_Framework_TestCase
     {
         parent::setUp();
         
-        // TODO Auto-generated AskedTest::setUp()
-        $database = new Database();
-        $db = $database->connect();
-        $this->asked = new Asked($db);
+        // TODO Auto-generated PassedQuizesTest::setUp()
+        $database=new Database();
+        $db=$database->connect();
+        $this->passedQuizes = new PassedQuizes($db);
     }
 
     /**
@@ -33,8 +32,8 @@ class AskedTest extends PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        // TODO Auto-generated AskedTest::tearDown()
-        $this->asked = null;
+        // TODO Auto-generated PassedQuizesTest::tearDown()
+        $this->passedQuizes = null;
         
         parent::tearDown();
     }
@@ -47,14 +46,15 @@ class AskedTest extends PHPUnit_Framework_TestCase
         // TODO Auto-generated constructor
     }
 
+
+
     /**
-     * Tests Asked->read()
+     * Tests PassedQuizes->read()
      */
     public function testRead()
     {
-        // TODO Auto-generated AskedTest->testRead()
-        // $this->markTestIncomplete("read test not implemented");
-        $res = $this->asked->read();
+        // TODO Auto-generated PassedQuizesTest->testRead()
+        $res = $this->passedQuizes->read();
         $this->assertNotEmpty($res);
         if ($this)
             $this->markTestIncomplete("Query excuted successfully");
