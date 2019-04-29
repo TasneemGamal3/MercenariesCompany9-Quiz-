@@ -9,10 +9,10 @@ class DBFactory
     
     public static function getDBO()
     {
-        $dbname = 'db_quiz';
+        $dbname = 'quiz_component';
         $host = 'localhost';
         $user = 'root';
-        $pass = '';
+        $pass = '123456';
         $charset = 'utf8mb4';
         $options = [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_WARNING,

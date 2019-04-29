@@ -2,15 +2,15 @@
 header('Access-Control-Allow-Origin: *');   
 header('Content-Type: application/jason');
 
-include_once  '../../Configeration/DB_Class.php';
-include_once  '../../Models/asked.php';
+include_once  '../Configeration/DB_Class.php';
+include_once  '../Models/GetScore.php';
 
 $database=new Database();
 $db=$database->connect();
 
-$ask=new Asked($db);
+$GetScore=new GetScore($db);
 
-$result=$ask->read();
+$result=$GetScore->read();
 $num=$result->rowCount();
 
 if($num>0){
@@ -20,7 +20,8 @@ if($num>0){
      extract($row);
      $Item=array(
     'UserID'=>$UserID,
-    'QuizID'=>$QuizID,
+	'UserScore'=>$UserScore,
+	'Skill'=>$Skill,
      );
      array_push($passed_arr['data'],$Item);
     }
@@ -29,7 +30,7 @@ if($num>0){
 }
 else{
    echo json_encode(
-array('message'=>'No asked Quizzes Found'));
+array('message'=>'No Result'));
 
 }
 ?>

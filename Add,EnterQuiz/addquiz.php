@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if ($expctDur == "") {
 		array_push($errors, "Enter Expected_Duration, Please");
 	}
-	if($boolean===true)
+	if($done===true)
 	{
 		for( $i=0 ; $i < $qNum ; $i++)
 		{
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (sizeof($errors) == 0) {
 		$done=true;
 
-		$stmt = $pdo->prepare('INSERT INTO `quizinfo` (`Title`, `Skill Type`, `Pass Score`, `Num Of Questions`, `Expected Duration`) VALUES (:title, :skillType, :passScore, :qNum, :expctDur)');
+		$stmt = $pdo->prepare('INSERT INTO `quizinfo` (`Title`, `SkillType`, `PassScore`, `NumOfQuestions`, `ExpectedDuration`) VALUES (:title, :skillType, :passScore, :qNum, :expctDur)');
 		$stmt->execute(array(
 			'title' => $title,
 			'skillType' => $skillType,
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$quiz = $stmt->fetch(PDO::FETCH_ASSOC);
 		$QuizID=$quiz['QuizID'];
 		
-		if($boolean===true)
+		if($done===true)
 		{
 			for( $i=0 ; $i < $qNum ; $i++)
 			{	
