@@ -1,0 +1,21 @@
+language: php
+
+notifications:
+  email: false
+
+services:
+ - mysql
+ 
+env:
+  - DB=mysql
+
+addons:
+  mariadb: '10.0'
+
+script: ./AskedTest.php
+script: ./GetScoreTest.php
+script: ./PassedQuizesTest.php
+script: ./TestDB.php
+
+before_script:
+  - sudo apt-get update
